@@ -16,12 +16,11 @@ export class MyApp {
 
   constructor(events: Events, platform: Platform, pushService: PushService) {
     pushService.init();
+    pushService.startWatch();
+
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
-      pushService.startWatch();
     });
 
     events.subscribe('clicked:notification', () => {
